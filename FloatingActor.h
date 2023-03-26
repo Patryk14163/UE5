@@ -24,10 +24,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(VisibleAnywhere)
-		UStaticMeshComponent* VisualMesh1;
-
-	UPROPERTY(VisibleAnywhere)
-		UStaticMeshComponent* VisualMesh2;
+		UStaticMeshComponent* VisualMesh;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "FloatingActor")
 		float FloatSpeed = 50.0f;

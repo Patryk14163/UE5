@@ -9,27 +9,15 @@ AFloatingActor::AFloatingActor()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	VisualMesh1 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh1"));
-	VisualMesh1->SetupAttachment(RootComponent);
+	VisualMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
+	VisualMesh->SetupAttachment(RootComponent);
 
-	VisualMesh2 = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh2"));
-	VisualMesh2->SetupAttachment(RootComponent);
+	static ConstructorHelpers::FObjectFinder<UStaticMesh>CubeVisualAsset(TEXT("/Game/LevelPrototyping/Meshes/SM_Cube.SM_Cube"));
 
-	static ConstructorHelpers::FObjectFinder<UStaticMesh>CubeVisualAsset1(TEXT("/Game/LevelPrototyping/Meshes/SM_Cube.SM_Cube"));
-	static ConstructorHelpers::FObjectFinder<UStaticMesh>CubeVisualAsset2(TEXT("/Game/StarterContent/Props/SM_Chair.SM_Chair"));
-
-	// Coœ nie dzia³a, musi byæ tylko chyba jeden mesh, robiæ dalej z instrukcji
-
-	if (CubeVisualAsset1.Succeeded())
+	if (CubeVisualAsset.Succeeded())
 	{
-		VisualMesh1->SetStaticMesh(CubeVisualAsset1.Object);
-		VisualMesh1->SetRelativeLocation(FVector(50.0f, 0.0f, 0.0f));
-	}
-
-	if (CubeVisualAsset2.Succeeded())
-	{
-		VisualMesh2->SetStaticMesh(CubeVisualAsset2.Object);
-		VisualMesh2->SetRelativeLocation(FVector(-50.0f, 0.0f, 0.0f));
+		VisualMesh->SetStaticMesh(CubeVisualAsset.Object);
+		VisualMesh->SetRelativeLocation(FVector(0.0f, 0.0f, 0.0f));
 	}
 
 }					
