@@ -15,11 +15,13 @@ public:
 	// Sets default values for this pawn's properties
 	AMyPawn();
 
-	// This variable is tagged as a UPROPERTY so that it will be visible 
-	// to Unreal Engine. This is important because it prevents the variable 
-	// from being reset when the game is launched, or when the project or level is closed and reloaded.
-	UPROPERTY(EditAnywhere)
-		USceneComponent* OurVisibleComponent;
+	void Move_XAxis(float AxisValue);
+	void Move_YAxis(float AxisValue);
+	void StartGrowing();
+	void StopGrowing();
+	FVector CurrentVelocity;
+	bool bGrowing;
+
 
 protected:
 	// Called when the game starts or when spawned
@@ -31,5 +33,11 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	// This variable is tagged as a UPROPERTY so that it will be visible 
+	// to Unreal Engine. This is important because it prevents the variable 
+	// from being reset when the game is launched, or when the project or level is closed and reloaded.
+	UPROPERTY(EditAnywhere)
+		USceneComponent* OurVisibleComponent;
 
 };
